@@ -42,7 +42,7 @@ class OneLinkedList:
         current = self.first
         count = 0
         while current is not None:
-            if i == count:
+            if i == count+1:
                 current.next_node = Node(data, current.next_node)
                 if current.next_node.next_node is None:
                     self.last = current.next_node
@@ -52,6 +52,15 @@ class OneLinkedList:
 
             current = current.next_node
             count += 1
+
+    def delete(self, i):
+        if type(i) is not int or i < 0:
+            raise ValueError('Invalid argument i.')
+
+        if i > self.length:
+            raise ValueError('Argument i out of range.')
+
+        
 
     def __str__(self):
         if self.first is not None:
@@ -74,7 +83,7 @@ linked_list = OneLinkedList()
 linked_list.append(3)
 linked_list.append(45)
 linked_list.push(1)
-linked_list.insert(3, 7777)
+linked_list.insert(1, 7777)
 
 print(linked_list)
 print(len(linked_list))
