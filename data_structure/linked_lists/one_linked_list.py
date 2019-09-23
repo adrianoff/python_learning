@@ -27,14 +27,14 @@ class OneLinkedList:
         else:
             self.first = Node(data, self.first)
 
-    def insert(self, i, data):
-        if type(i) is not int or i < 0:
+    def insert(self, position, data):
+        if type(position) is not int or position < 0:
             raise ValueError('Invalid argument i.')
 
-        if i > self.length:
+        if position > self.length:
             raise ValueError('Argument i out of range.')
 
-        if i == 0:
+        if position == 0:
             self.first = Node(data, self.first)
             self.length += 1
             return
@@ -42,7 +42,7 @@ class OneLinkedList:
         current = self.first
         count = 0
         while current is not None:
-            if i == count+1:
+            if position == count+1:
                 current.next_node = Node(data, current.next_node)
                 if current.next_node.next_node is None:
                     self.last = current.next_node
@@ -53,14 +53,43 @@ class OneLinkedList:
             current = current.next_node
             count += 1
 
-    def delete(self, i):
-        if type(i) is not int or i < 0:
+    def delete(self, position):
+        if type(position) is not int or position < 0:
             raise ValueError('Invalid argument i.')
 
-        if i > self.length:
+        if position > self.length:
             raise ValueError('Argument i out of range.')
 
-        pass
+        if position == 0:
+            if self.first.next_node is not None:
+                self.first = self.first.next_node
+            else:
+                self.first = self.last = None
+
+            self.length -= 1
+            return
+
+        current = self.first
+        count = 0
+        while current is not None:
+            if position == count + 1:
+                if current.next_node.next_node is not None:
+                    current.next_node = current.next_node.next_node
+                    self.length -= 1
+                else:
+                    current.next_node = None
+                    self.last = current
+                    self.length -= 1
+                break
+
+            current = current.next_node
+            count += 1
+
+    def get_first(self):
+        return self.first
+
+    def get_last(self):
+        return self.last
 
     def __str__(self):
         if self.first is not None:
@@ -84,6 +113,10 @@ linked_list.append(3)
 linked_list.append(45)
 linked_list.push(1)
 linked_list.insert(1, 7777)
+print(linked_list)
+linked_list.delete(0)
 
 print(linked_list)
 print(len(linked_list))
+print(linked_list.get_first().value)
+print(linked_list.get_last().value)
