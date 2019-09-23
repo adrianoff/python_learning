@@ -60,7 +60,7 @@ class OneLinkedList:
         if i > self.length:
             raise ValueError('Argument i out of range.')
 
-        
+        pass
 
     def __str__(self):
         if self.first is not None:
