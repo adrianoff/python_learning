@@ -1,7 +1,8 @@
 import functools
-from fluent_python_book.decorators7.time_decorator import my_timeit
+from time_decorator import my_timeit
 
 
+@functools.lru_cache()
 @my_timeit
 def fibonacci(n):
     if n < 2:
@@ -9,4 +10,4 @@ def fibonacci(n):
     return fibonacci(n-2) + fibonacci(n-1)
 
 
-print(fibonacci(30))
+print(fibonacci(40))
