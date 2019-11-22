@@ -3,7 +3,11 @@
 
 def bubble_sorting(arr):
     """ Bubble sorting """
-    pass
+    N = len(arr)
+    for bypass in range(1, N):
+        for k in range(0, N-bypass):
+            if arr[k] > arr[k+1]:
+                arr[k], arr[k+1] = arr[k+1], arr[k]
 
 
 def insert_sorting(arr):
@@ -16,10 +20,13 @@ def insert_sorting(arr):
             k -= 1
 
 
-
 def choice_sorting(arr):
     """ Choice sorting """
-    pass
+    N = len(arr)
+    for pos in range(0, N-1):
+        for k in range(pos+1, N):
+            if arr[k] < arr[pos]:
+                arr[k], arr[pos] = arr[pos], arr[k]
 
 
 def test_sorting(sorting_func):
@@ -39,6 +46,6 @@ def test_sorting(sorting_func):
     print("")
 
 
-#test_sorting(bubble_sorting)
+test_sorting(bubble_sorting)
 test_sorting(insert_sorting)
-#test_sorting(choice_sorting)
+test_sorting(choice_sorting)
