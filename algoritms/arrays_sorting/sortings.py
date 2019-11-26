@@ -57,6 +57,40 @@ def count_sorting(arr):
         arr += [i+minimum] * count_arr[i]
 
 
+def _merge(arr1: list, arr2: list):
+    merged_arr = [0] * (len(arr1) + len(arr2))
+    i = k = n = 0
+    while i < len(arr1) and k < len(arr2):
+        if arr1[i] <= arr2[k]:
+            merged_arr[n] = arr1[i]
+            i += 1
+        else:
+            merged_arr[n] = arr2[k]
+            k += 1
+        n += 1
+
+    while i < len(arr1):
+        merged_arr[n] = arr1[i]
+        i += 1
+        n += 1
+    while k < len(arr2):
+        merged_arr[n] = arr2[k]
+        k += 1
+        n += 1
+    return merged_arr
+
+
+def merge_sorting(arr):
+    """ Merge sorting """
+    if len(arr) <= 1:
+        return
+    middle = len(arr) // 2
+    left = arr[:middle]
+    right = arr[middle:]
+    merge_sorting(left)
+    merge_sorting(right)
+    arr[:] = _merge(left, right)
+
 def test_sorting(sorting_func):
     print(sorting_func.__doc__)
 
@@ -85,7 +119,8 @@ def test_sorting(sorting_func):
     print('OK' if arr == arr_sorted else 'Fail')
 
 
-test_sorting(count_sorting)
+test_sorting(merge_sorting)
+#test_sorting(count_sorting)
 #test_sorting(bubble_sorting)
 #test_sorting(insert_sorting)
 #test_sorting(choice_sorting)
