@@ -16,6 +16,7 @@
 
 # string = 'Mr Adrianov is happy    '
 # print('%20'.join(string.split()))
+from collections import OrderedDict
 
 
 def is_palindrom(string):
@@ -63,13 +64,88 @@ def one_mistake_between_strings(s1: str, s2: str):
     return False
 
 
+def my_zip(string):
+    my_dict = OrderedDict()
+    for char in string:
+        my_dict[char] = my_dict.setdefault(char, 0) + 1
+
+    new_string = ''
+    for key in my_dict.keys():
+        count = my_dict[key]
+        if count > 1:
+            new_string += key + str(my_dict[key])
+        else:
+            new_string += key
+
+    return new_string
+
+
+def my_zip2(string):
+    prev = None
+    new_str = ''
+    c = 1
+    for char in string:
+        if prev == char:
+            c += 1
+        if prev != char and prev is not None:
+            if c > 1:
+                new_str += prev + str(c)
+            else:
+                new_str += prev
+            c = 1
+
+        prev = char
+
+    if c > 1:
+        new_str += char + str(c)
+    else:
+        new_str += char
+
+    return new_str
+
+
+import math
+def simple_number(start, stop):
+    result = []
+    for i in range(start, stop+1):
+        flag = False
+        for k in range(2, math.ceil(math.sqrt(i))+1):
+            if i % k == 0:
+                flag = True
+                break
+
+        if not flag:
+            result.append(i)
+    return result
+
+
+def find_len_of_1(ll):
+    """ Требуется найти в бинарном векторе самую длинную последовательность единиц и вывести её длину. """
+    m = 0
+    c = 0
+    for i in ll:
+        if i == 1:
+            c += 1
+            m = max(m, c)
+        else:
+            c = 0
+
+    return m
+
+
 def test_functions(func: callable):
     print(func.__doc__)
 
-    arg1 = 'pale'
-    arg2 = 'bale'
-    result = func(arg1, arg2)
-    print('OK' if result is True else 'Fail')
+    arg1 = 'ddddabcdd'
+    result = func(arg1)
+    print(result)
+    print('OK' if result == 'd4abcd2' else 'Fail')
 
 
-test_functions(one_mistake_between_strings)
+#test_functions(my_zip2)
+#print(simple_number(1, 20))
+
+print(find_len_of_1([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0]))
+print(find_len_of_1([]))
+print(find_len_of_1([1, 1, 1, 1, 1, 1]))
+print(find_len_of_1([0, 0, 0, 0, 0, 0, 0]))
