@@ -149,3 +149,23 @@ print(find_len_of_1([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0]))
 print(find_len_of_1([]))
 print(find_len_of_1([1, 1, 1, 1, 1, 1]))
 print(find_len_of_1([0, 0, 0, 0, 0, 0, 0]))
+
+
+def checkio(data: str) -> bool:
+    if len(data) < 10:
+        return False
+
+    has_digit = False
+    has_upper = False
+    has_lower = False
+    for c in data:
+        if str.isdigit(c):
+            has_digit = True
+        if str.islower(c):
+            has_lower = True
+        if str.isupper(c):
+            has_upper = True
+
+    return has_digit and has_upper and has_lower
+
+checkio("ULFFunH8ni")
