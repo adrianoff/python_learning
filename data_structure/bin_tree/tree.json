@@ -13,7 +13,16 @@
     "right": {
       "value": null,
       "left": {
-        "value": 4
+        "value": 4,
+        "left": {
+          "value": 7
+        },
+        "right": {
+          "value": 8,
+          "left": {
+            "value": 9
+          }
+        }
       },
       "right": {
         "value": 5
