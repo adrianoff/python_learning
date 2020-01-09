@@ -38,4 +38,3 @@ def move(h: int, stack1: Stack, stack2: Stack, stack3: Stack):
 
 
 move(len(stack1), stack1, stack2, stack3)
-pass
