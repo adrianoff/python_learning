@@ -145,10 +145,10 @@ def test_functions(func: callable):
 #test_functions(my_zip2)
 #print(simple_number(1, 20))
 
-print(find_len_of_1([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0]))
-print(find_len_of_1([]))
-print(find_len_of_1([1, 1, 1, 1, 1, 1]))
-print(find_len_of_1([0, 0, 0, 0, 0, 0, 0]))
+# print(find_len_of_1([0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0]))
+# print(find_len_of_1([]))
+# print(find_len_of_1([1, 1, 1, 1, 1, 1]))
+# print(find_len_of_1([0, 0, 0, 0, 0, 0, 0]))
 
 
 def checkio(data: str) -> bool:
@@ -168,4 +168,23 @@ def checkio(data: str) -> bool:
 
     return has_digit and has_upper and has_lower
 
-checkio("ULFFunH8ni")
+
+import random
+def find_key(keys, key):
+    l = 0
+    r = len(keys)
+    while l <= r:
+        m = int((l+r)/2)
+        if keys[m] == key:
+            return key
+        elif keys[m] > key:
+            r = m - 1
+        else:
+            l = m + 1
+
+    return -1
+
+find_key(sorted(random.sample(range(0, 1000), 100)), 12)
+
+
+
