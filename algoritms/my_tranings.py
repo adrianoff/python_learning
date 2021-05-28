@@ -167,24 +167,3 @@ def checkio(data: str) -> bool:
             has_upper = True
 
     return has_digit and has_upper and has_lower
-
-
-import random
-def find_key(keys, key):
-    l = 0
-    r = len(keys)
-    while l <= r:
-        m = int((l+r)/2)
-        if keys[m] == key:
-            return key
-        elif keys[m] > key:
-            r = m - 1
-        else:
-            l = m + 1
-
-    return -1
-
-find_key(sorted(random.sample(range(0, 1000), 100)), 12)
-
-
-
