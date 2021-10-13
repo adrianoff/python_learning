@@ -31,7 +31,7 @@ def insert_sorting(arr: list):
 
 
 def merge_sorting(arr: list) -> list:
-    if (len(arr) > 1) :
+    if len(arr) > 1:
         l = merge_sorting(arr[0:int(len(arr)/2)])
         r = merge_sorting(arr[int(len(arr)/2):])
 
@@ -59,7 +59,7 @@ def merge_sorting(arr: list) -> list:
 
 
 if __name__ == '__main__':
-    N = 10000000
+    N = 100000000
     s1 = [random.randint(0, 100) for i in range(N)]
 
     ts = time()
